@@ -1,0 +1,14 @@
+---
+description: Slint UI conventions — declarative layout, Rust logic separation
+globs: "**/*.slint,ui_application/**"
+alwaysApply: false
+---
+
+# Slint UI Rules
+
+- All declarative layout lives in `.slint` files under `ui_application/ui/`.
+- Business logic and state mutations live in `.rs` files; never embed logic in Slint markup.
+- Import standard widgets: `import { Button, LineEdit, VerticalBox } from "std-widgets.slint";`
+- UI crate may depend on `core_domain` traits/types but must not import `infrastructure/` directly.
+- Use callbacks (`callback name(type);`) to bridge UI events to Rust handlers.
+- Bind state with properties (`in-out property <string> name`) and two-way binding (`<=>`).

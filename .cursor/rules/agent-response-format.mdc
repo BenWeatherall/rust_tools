@@ -1,0 +1,21 @@
+---
+description: Agent response priorities and completion checklist
+alwaysApply: true
+---
+
+# Agent Response Format
+
+Priority order when finishing a task:
+
+1. Build errors (must compile)
+2. Safety issues (`unsafe`, panics, secret leaks)
+3. Test failures
+4. Style and formatting
+
+Before marking a task complete:
+
+- Run `./scripts/lint_and_fmt.sh`
+- Run `./scripts/quality_gate.sh` for implementation steps
+- Update progress in `docs/planning_docs/implementation_plan.md`
+
+Keep code changes minimal and scoped to the claimed plan step.

@@ -1,0 +1,12 @@
+[package]
+name = "infrastructure"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Infrastructure adapters for the Rust UI agent foundation workspace"
+
+[lints]
+workspace = true
+
+[dependencies]
+core_domain = { path = "../core_domain" }

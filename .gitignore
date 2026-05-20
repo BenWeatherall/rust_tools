@@ -1,0 +1,5 @@
+/target/
+**/*.rs.bk
+docs/planning_docs/session_state.json
+docs/planning_docs/review_context.json
+Cargo.lock

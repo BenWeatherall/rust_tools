@@ -1,0 +1,14 @@
+# Cursor reads .gitignore by default. Ephemeral workflow files below are
+# gitignored (local/generated) but must stay visible to the agent for RPI
+# continuity, session recovery, and adversarial review handoff.
+#
+# See: https://cursor.com/docs/reference/ignore-file
+
+# Re-enable gitignored planning artifacts
+!docs/planning_docs/session_state.json
+!docs/planning_docs/review_context.json
+
+# Ensure the full planning docs tree stays indexed (templates, sub-reports,
+# adversarial_review.md, implementation_plan.md, etc.)
+!docs/planning_docs/
+!docs/planning_docs/**

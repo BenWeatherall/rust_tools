@@ -1,0 +1,19 @@
+[package]
+name = "ui_application"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Slint UI application entry point"
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+core_domain = { path = "../core_domain" }
+infrastructure = { path = "../infrastructure" }
+anyhow.workspace = true
+slint = "1.16"
+
+[build-dependencies]
+slint-build = "1.16"

@@ -1,0 +1,14 @@
+---
+description: SOLID architecture, workspace isolation, feature-driven modules
+alwaysApply: true
+---
+
+# Rust Architecture
+
+- Apply SOLID via Rust modules, traits, and workspace boundaries.
+- **SRP**: One reason to change per module/struct. Use specific names (`UserRegistrationValidator`, not `Validator`).
+- **OCP**: Extend via new trait impl files; avoid editing large core files.
+- **DIP**: High-level crates depend on traits in `core_domain`; never import infrastructure from UI.
+- **Feature-driven structure**: Colocate related types, impls, and tests in the same module.
+- Workspace members: `core_domain/` (pure logic), `infrastructure/` (adapters), `ui_application/` (Slint UI).
+- When fixing a UI bug, scope context to `ui_application/` only.

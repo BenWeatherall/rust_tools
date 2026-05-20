@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "hooks": {
+    "preCompact": [
+      {
+        "command": ".cursor/hooks/pre_compact.sh"
+      }
+    ],
+    "sessionStart": [
+      {
+        "command": ".cursor/hooks/session_start.sh"
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": ".cursor/hooks/remind_lint.sh",
+        "matcher": "\\.(rs|slint)$"
+      }
+    ]
+  }
+}

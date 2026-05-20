@@ -1,0 +1,23 @@
+[workspace]
+resolver = "2"
+members = ["core_domain", "infrastructure", "ui_application"]
+
+[workspace.lints.rust]
+unsafe_code = "deny"
+missing_docs = "deny"
+unused_crate_dependencies = "warn"
+
+[workspace.lints.clippy]
+unwrap_used = "deny"
+expect_used = "deny"
+pedantic = { level = "warn", priority = -1 }
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+
+[workspace.dependencies]
+thiserror = "2"
+anyhow = "1"
+slint = "1.16"

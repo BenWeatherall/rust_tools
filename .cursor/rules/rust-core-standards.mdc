@@ -1,0 +1,25 @@
+---
+description: Rust coding standards — explicit types, newtypes, error handling, no unwrap
+globs: "**/*.rs"
+alwaysApply: false
+---
+
+# Rust Core Standards
+
+- Use explicit types on all public function signatures and complex bindings.
+- Wrap primitive IDs in newtypes: `struct UserId(String);` — never pass raw `String` for IDs.
+- Error handling: `thiserror` in library crates, `anyhow` in binaries. No raw string errors.
+- Never use `.unwrap()` or `.expect()` in production code; propagate with `?`.
+- Default collections: `Vec` for sequences, `HashMap` for maps; pre-allocate when size is known.
+- Use Builder pattern only for structs with complex initialization; use plain constructors otherwise.
+- Document every public item (enforced by workspace lints in library crates).
+
+```rust
+// BAD
+fn get_user(id: String) -> User { users.get(&id).unwrap().clone() }
+
+// GOOD
+fn get_user(id: &UserId) -> Result<User, DomainError> {
+    self.storage.find_user(id)
+}
+```

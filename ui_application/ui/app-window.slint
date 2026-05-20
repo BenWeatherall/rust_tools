@@ -1,0 +1,41 @@
+import { Button, LineEdit, VerticalBox } from "std-widgets.slint";
+
+export component AppWindow inherits Window {
+    title: "Rust Agent Foundation";
+    preferred-width: 480px;
+    preferred-height: 320px;
+
+    in-out property <string> greeting: "Hello from Slint";
+    in-out property <string> status-message: "Ready";
+
+    callback register-user(string);
+
+    VerticalBox {
+        padding: 24px;
+        spacing: 16px;
+
+        Text {
+            text: greeting;
+            font-size: 24px;
+            horizontal-alignment: center;
+        }
+
+        LineEdit {
+            placeholder-text: "Display name";
+            text <=> root.greeting;
+        }
+
+        Button {
+            text: "Register User";
+            clicked => {
+                root.register-user(root.greeting);
+            }
+        }
+
+        Text {
+            text: status-message;
+            horizontal-alignment: center;
+            color: #666666;
+        }
+    }
+}

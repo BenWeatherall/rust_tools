@@ -1,0 +1,12 @@
+[package]
+name = "core_domain"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Pure business logic for the Rust UI agent foundation workspace"
+
+[lints]
+workspace = true
+
+[dependencies]
+thiserror.workspace = true
