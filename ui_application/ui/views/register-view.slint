@@ -1,0 +1,36 @@
+import { Button, LineEdit, VerticalBox } from "std-widgets.slint";
+import { StatusBadge } from "../components/status-badge.slint";
+
+export component RegisterView {
+    in-out property <string> greeting: "Hello from Slint";
+    in-out property <string> status-message: "Ready";
+
+    callback register-user(string);
+
+    VerticalBox {
+        padding: 24px;
+        spacing: 16px;
+
+        Text {
+            text: root.greeting;
+            font-size: 24px;
+            horizontal-alignment: center;
+        }
+
+        LineEdit {
+            placeholder-text: "Display name";
+            text <=> root.greeting;
+        }
+
+        Button {
+            text: "Register User";
+            clicked => {
+                root.register-user(root.greeting);
+            }
+        }
+
+        StatusBadge {
+            message: root.status-message;
+        }
+    }
+}

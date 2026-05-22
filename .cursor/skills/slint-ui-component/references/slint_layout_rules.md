@@ -6,7 +6,8 @@
 ui_application/
 ├── ui/
 │   ├── app-window.slint      # Root window
-│   └── components/           # Reusable components
+│   ├── components/           # Reusable components
+│   └── views/                # Screen-level views
 ├── src/
 │   └── main.rs               # Entry point, callbacks
 └── build.rs                  # Slint compile step

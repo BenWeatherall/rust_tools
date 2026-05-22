@@ -29,6 +29,10 @@
 - [ ] Step 2:
 - [ ] Step 3:
 
+## Active Skill
+
+<!-- Optional: skill in use for current step, e.g. @rpi-implement -->
+
 ## Testing Strategy
 
 <!-- Unit tests, UI validation, quality gate expectations. -->

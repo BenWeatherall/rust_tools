@@ -11,11 +11,12 @@ description: >-
 
 ## Workflow
 
-1. Create a **Minimal Reproducible Example** (MRE) — see [mre_workflow.md](references/mre_workflow.md).
-2. Use wolf-fence: comment out half the code, identify which half contains the bug, repeat.
-3. Add `dbg!()` at state transition points (remove before finishing).
-4. Run `cargo test --workspace -- --nocapture` for failing test output.
-5. Fix root cause; remove all debug instrumentation.
+1. Scaffold an MRE test: `./.cursor/skills/rust-debug/scripts/create_mre.sh [crate] [test_name]`
+2. Create a **Minimal Reproducible Example** (MRE) — see [mre_workflow.md](references/mre_workflow.md).
+3. Use wolf-fence: comment out half the code, identify which half contains the bug, repeat.
+4. Add `dbg!()` at state transition points (remove before finishing).
+5. Run `cargo test --workspace -- --nocapture` for failing test output.
+6. Fix root cause; remove all debug instrumentation.
 
 ## UI-Specific
 

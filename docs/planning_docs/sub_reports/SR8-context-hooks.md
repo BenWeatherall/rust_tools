@@ -7,7 +7,7 @@ Context survival across compaction via Cursor hooks.
 ## Delivered
 
 - `.cursor/hooks.json`:
-  - `preCompact` → `pre_compact.sh` — saves to `session_state.json`
+  - `preCompact` → `pre_compact.sh` — saves plan steps, progress notes, and active skill to `session_state.json`
   - `sessionStart` → `session_start.sh` — injects restored context
   - `afterFileEdit` → `remind_lint.sh` — lint reminder for `.rs`/`.slint`
 

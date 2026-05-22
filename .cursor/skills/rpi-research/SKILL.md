@@ -15,7 +15,8 @@ description: >-
 
 ## Workflow
 
-1. Run `./scripts/analyze_codebase.sh` for structural analysis.
+1. Run `./.cursor/skills/rpi-research/scripts/analyze_codebase.sh` for JSON structural analysis.
+2. Optionally save report: `./.cursor/skills/rpi-research/scripts/analyze_codebase.sh docs/planning_docs/research_report.json`
 2. Read [research_template.md](references/research_template.md) for output format.
 3. Identify affected workspace members and trait interfaces.
 4. Document cross-crate impacts (UI state → domain logic).
@@ -24,7 +25,7 @@ description: >-
 ## Analysis Commands
 
 ```bash
-./scripts/analyze_codebase.sh
+./.cursor/skills/rpi-research/scripts/analyze_codebase.sh
 cargo tree --workspace
 ```
 

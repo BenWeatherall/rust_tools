@@ -1,0 +1,10 @@
+export component StatusBadge {
+    in property <string> message: "";
+    in property <color> color: #666666;
+
+    Text {
+        text: message;
+        horizontal-alignment: center;
+        color: color;
+    }
+}

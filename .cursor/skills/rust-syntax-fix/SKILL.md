@@ -10,10 +10,11 @@ description: >-
 
 ## Workflow
 
-1. Read the parse error line number and message.
-2. Check [syntax_pitfalls.md](references/syntax_pitfalls.md) for the pattern.
-3. Fix syntax only — do not refactor logic during syntax fixes.
-4. Re-run `cargo check` to confirm parse succeeds.
+1. Run `./.cursor/skills/rust-syntax-fix/scripts/check_syntax.sh [crate]` for JSON parse errors.
+2. Read the parse error line number and message.
+3. Check [syntax_pitfalls.md](references/syntax_pitfalls.md) for the pattern.
+4. Fix syntax only — do not refactor logic during syntax fixes.
+5. Re-run `check_syntax.sh` to confirm parse succeeds.
 
 ## Common Fixes
 

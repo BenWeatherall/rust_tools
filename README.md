@@ -25,7 +25,7 @@ Open this project in Cursor to get rules, skills, hooks, and prompts automatical
   ```
 - Python 3 (for JSON scripts)
 - Optional: `cargo-audit` for security skill (`cargo install cargo-audit`)
-- Optional: [agent-browser](https://github.com/vercel-labs/agent-browser) for headless UI validation
+- Optional: [agent-browser](https://github.com/vercel-labs/agent-browser) for headless UI validation (set `AGENT_BROWSER_URL` for wasm/web targets)
 - Optional: Rust nightly for JSON test output (`rustup install nightly`)
 
 ### Setup
@@ -55,7 +55,7 @@ cargo check --workspace
 ./scripts/lint_and_fmt.sh       # Format + Clippy
 ./scripts/test_json.sh          # Tests with JSON output
 ./scripts/quality_gate.sh       # Full validation gate
-./scripts/orchestrate_review.sh # Validator + Critic handoff
+./scripts/orchestrate_review.sh # Validator + Critic (required before merge)
 ```
 
 ### Running the UI

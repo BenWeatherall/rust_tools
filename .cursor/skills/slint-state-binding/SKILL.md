@@ -10,10 +10,11 @@ description: >-
 
 ## Workflow
 
-1. Read [property_binding.md](references/property_binding.md) for binding syntax.
-2. Read [callback_patterns.md](references/callback_patterns.md) for event flow.
-3. Define properties in `.slint`; read/write from Rust via getters/setters.
-4. Use `ui.as_weak()` in callbacks to avoid circular references.
+1. Run `./.cursor/skills/slint-state-binding/scripts/verify_bindings.sh` to validate bindings compile.
+2. Read [property_binding.md](references/property_binding.md) for binding syntax.
+3. Read [callback_patterns.md](references/callback_patterns.md) for event flow.
+4. Define properties in `.slint`; read/write from Rust via getters/setters.
+5. Use `ui.as_weak()` in callbacks to avoid circular references.
 
 ## Binding Types
 

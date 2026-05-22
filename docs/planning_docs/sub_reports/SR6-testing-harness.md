@@ -16,7 +16,7 @@ Machine-readable test and UI validation with JSON output.
 
 - Nightly Rust enables libtest JSON via `-Z unstable-options --format json`
 - Stable fallback parses `cargo test` output
-- `agent-browser` optional for headless UI snapshots
+- `agent-browser` optional when `AGENT_BROWSER_URL` is set (wasm/web targets)
 
 ## Validation
 

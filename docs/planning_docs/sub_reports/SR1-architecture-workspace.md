@@ -9,7 +9,7 @@ Cargo workspace with SOLID boundaries and Slint UI scaffold.
 - Workspace members: `core_domain`, `infrastructure`, `ui_application`
 - `core_domain`: `Storage` trait, `User`/`UserId`, `UserRegistrationValidator`, `DomainError`
 - `infrastructure`: `InMemoryStorage` implementing `Storage`
-- `ui_application`: Slint `AppWindow` with register-user callback
+- `ui_application`: Slint `AppWindow` with `ui/components/`, `ui/views/`, register-user callback
 - `docs/planning_docs/` templates for RPI workflow
 
 ## Validation

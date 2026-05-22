@@ -1,4 +1,4 @@
-import { Button, LineEdit, VerticalBox } from "std-widgets.slint";
+import { RegisterView } from "views/register-view.slint";
 
 export component AppWindow inherits Window {
     title: "Rust Agent Foundation";
@@ -10,32 +10,11 @@ export component AppWindow inherits Window {
 
     callback register-user(string);
 
-    VerticalBox {
-        padding: 24px;
-        spacing: 16px;
-
-        Text {
-            text: greeting;
-            font-size: 24px;
-            horizontal-alignment: center;
-        }
-
-        LineEdit {
-            placeholder-text: "Display name";
-            text <=> root.greeting;
-        }
-
-        Button {
-            text: "Register User";
-            clicked => {
-                root.register-user(root.greeting);
-            }
-        }
-
-        Text {
-            text: status-message;
-            horizontal-alignment: center;
-            color: #666666;
+    RegisterView {
+        greeting <=> root.greeting;
+        status-message <=> root.status-message;
+        register-user(name) => {
+            root.register-user(name);
         }
     }
 }

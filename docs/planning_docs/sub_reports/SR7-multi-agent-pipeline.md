@@ -10,7 +10,7 @@ Executor/Validator/Critic orchestration with verify-review-fix-score loop.
   1. Runs `quality_gate.sh` (Validator)
   2. Generates `review_context.json` (diff + PRD)
   3. Hands off to Critic via `@adversarial-review` skill
-  4. Parses confidence score; blocks if < 90
+  4. Parses confidence score; blocks if < 90 or review missing (use `--skip-critic` for dev)
 
 ## Cursor Integration
 

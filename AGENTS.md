@@ -46,7 +46,7 @@ Research → [approval] → Plan → [approval] → Implement → Validator → 
 1. Run research with `@rpi-research`; output to `docs/planning_docs/implementation_research.md`.
 2. Create plan in `docs/planning_docs/implementation_plan.md`; get approval.
 3. Implement one step at a time with `@rpi-implement`.
-4. Run `./scripts/orchestrate_review.sh` before considering a step complete.
+4. Run `./scripts/orchestrate_review.sh` before considering a step complete (Critic review required; use `--skip-critic` only during development).
 5. If Critic score < 90, address feedback in `docs/planning_docs/adversarial_review.md`.
 
 ## Quick Commands
@@ -54,7 +54,8 @@ Research → [approval] → Plan → [approval] → Implement → Validator → 
 ```bash
 ./scripts/lint_and_fmt.sh          # Format + Clippy
 ./scripts/quality_gate.sh          # Full validation (JSON)
-./scripts/orchestrate_review.sh    # Validator + Critic handoff
+./scripts/orchestrate_review.sh    # Validator + Critic (exits 1 until review complete)
+./scripts/orchestrate_review.sh --skip-critic  # Validator only (dev)
 ```
 
 ## Context Survival
