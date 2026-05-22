@@ -12,12 +12,15 @@ if [ ! -f "$STATE_FILE" ]; then
 fi
 
 python3 - "$STATE_FILE" <<'PY'
-import json, sys
+import json
+import sys
 
 state = json.load(open(sys.argv[1]))
 lines = [
     "## Restored Session State",
     f"Saved at: {state.get('saved_at', 'unknown')}",
+    f"Feature request: {state.get('feature_request', 'none')}",
+    f"Pipeline phase: {state.get('pipeline_phase', 'unknown')}",
     f"Current PRD step: {state.get('current_prd_step', 'none')}",
     f"Active skill: {state.get('active_skill', 'none')}",
     "",
@@ -25,8 +28,23 @@ lines = [
 ]
 for item in state.get("pending_checklist", []):
     lines.append(f"- [ ] {item}")
-for decision in state.get("recent_decisions", []):
-    lines.append(f"Decision: {decision}")
+if state.get("recent_decisions"):
+    lines.append("")
+    lines.append("### Recent Decisions")
+    for decision in state.get("recent_decisions", []):
+        lines.append(f"- {decision}")
+
+phase = state.get("pipeline_phase", "")
+if phase == "awaiting_approval":
+    lines.extend([
+        "",
+        "Use `/resume-pipeline` after approving the plan, or `/develop-feature` for a new feature.",
+    ])
+elif phase in ("implement", "review"):
+    lines.extend([
+        "",
+        "Use `/resume-pipeline` to continue the current feature.",
+    ])
 
 print(json.dumps({"additional_context": "\n".join(lines)}))
 PY

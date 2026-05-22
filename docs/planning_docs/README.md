@@ -14,9 +14,11 @@ Persistent memory for the RPI (Research → Plan → Implement) workflow.
 
 ## Usage
 
-1. Start research: invoke `@rpi-research` or use `.cursor/prompts/01-research.md`
+**Preferred entry point:** type `/develop-feature` in Cursor chat and describe the feature. After plan approval, use `/resume-pipeline` to continue.
+
+1. Start research: `/develop-feature`, `@rpi-research`, or `.cursor/prompts/01-research.md`
 2. Create plan from research findings; get approval before coding
-3. Implement steps with `@rpi-implement`
+3. Implement steps with `/resume-pipeline` or `@rpi-implement`
 4. Run `./scripts/orchestrate_review.sh` after each step
 
 Templates are pre-filled with section headers. Copy and fill for each feature.

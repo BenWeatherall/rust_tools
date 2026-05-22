@@ -51,6 +51,17 @@ Research → [approval] → Plan → [approval] → Implement → Validator → 
 
 ## Quick Commands
 
+### Pipeline (Cursor)
+
+| Command | When to Use |
+|---------|-------------|
+| `/develop-feature` | Start a new feature — runs Research → Plan, stops at approval gate |
+| `/resume-pipeline` | Continue after approval, compaction, or mid-feature interruption |
+
+Initialize manually: `./scripts/pipeline_init.sh "Feature summary"`
+
+### Validation (Shell)
+
 ```bash
 ./scripts/lint_and_fmt.sh          # Format + Clippy
 ./scripts/quality_gate.sh          # Full validation (JSON)

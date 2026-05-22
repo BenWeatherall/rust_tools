@@ -6,8 +6,9 @@ INPUT=$(cat)
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 STATE_FILE="$ROOT/docs/planning_docs/session_state.json"
 PLAN="$ROOT/docs/planning_docs/implementation_plan.md"
+RESEARCH="$ROOT/docs/planning_docs/implementation_research.md"
 
-python3 - "$PLAN" "$STATE_FILE" <<'PY'
+python3 - "$PLAN" "$STATE_FILE" "$RESEARCH" <<'PY'
 import json
 import re
 import sys
@@ -16,11 +17,40 @@ from pathlib import Path
 
 plan_path = Path(sys.argv[1])
 state_path = Path(sys.argv[2])
+research_path = Path(sys.argv[3])
 
 current_step = ""
 pending = []
 recent_decisions = []
 active_skill = ""
+feature_request = ""
+pipeline_phase = "research"
+approval_checked = False
+has_plan_content = False
+
+existing = {}
+if state_path.is_file():
+    try:
+        existing = json.loads(state_path.read_text())
+    except json.JSONDecodeError:
+        existing = {}
+
+feature_request = existing.get("feature_request", "")
+
+if research_path.is_file() and not feature_request:
+    research_text = research_path.read_text()
+    in_summary = False
+    for line in research_text.splitlines():
+        stripped = line.strip()
+        if stripped == "## Feature Summary":
+            in_summary = True
+            continue
+        if in_summary:
+            if stripped.startswith("##"):
+                break
+            if stripped and not stripped.startswith("<!--"):
+                feature_request = stripped
+                break
 
 if plan_path.is_file():
     text = plan_path.read_text()
@@ -32,9 +62,12 @@ if plan_path.is_file():
         if stripped.startswith("## "):
             section = stripped[3:].strip()
             continue
+        if section == "Approval Gate" and line.startswith("- [x]"):
+            approval_checked = True
         if section == "Step Checklist" and line.startswith("- [ ] "):
             item = line[6:].strip()
-            if item:
+            if item and not item.endswith(":"):
+                has_plan_content = True
                 pending.append(item)
                 if not current_step:
                     current_step = item
@@ -63,8 +96,32 @@ if plan_path.is_file():
 
     recent_decisions = recent_decisions[-5:]
 
+    if existing.get("pipeline_phase") == "review":
+        pipeline_phase = "review"
+    elif not has_plan_content and not approval_checked:
+        pipeline_phase = existing.get("pipeline_phase", "research")
+    elif not approval_checked:
+        pipeline_phase = "awaiting_approval"
+    elif pending:
+        pipeline_phase = "implement"
+    else:
+        pipeline_phase = "complete"
+
+if not active_skill:
+    phase_skills = {
+        "research": "@rpi-research",
+        "plan": "@rpi-research",
+        "awaiting_approval": "@rpi-research",
+        "implement": "@rpi-implement",
+        "review": "@adversarial-review",
+        "complete": "",
+    }
+    active_skill = phase_skills.get(pipeline_phase, "")
+
 state = {
     "saved_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    "feature_request": feature_request,
+    "pipeline_phase": pipeline_phase,
     "current_prd_step": current_step,
     "pending_checklist": pending,
     "recent_decisions": recent_decisions,
