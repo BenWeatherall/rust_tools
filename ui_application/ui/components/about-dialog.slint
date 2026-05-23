@@ -1,0 +1,60 @@
+import { AboutSlint, Button, VerticalBox } from "std-widgets.slint";
+
+export component AboutDialog {
+    in property <string> app-name: "Rust Agent Foundation";
+    in property <string> app-version: "0.1.0";
+    in property <length> anchor-width;
+    in property <length> anchor-height;
+
+    private property <length> popup-width: 320px;
+    private property <length> popup-height: 280px;
+
+    popup := PopupWindow {
+        close-policy: close-on-click-outside;
+        x: (root.anchor-width - self.width) / 2;
+        y: (root.anchor-height - self.height) / 2;
+        width: root.popup-width;
+        height: root.popup-height;
+
+        Rectangle {
+            background: #ffffff;
+            border-width: 1px;
+            border-color: #cccccc;
+            border-radius: 4px;
+
+            VerticalBox {
+                padding: 16px;
+                spacing: 12px;
+                alignment: center;
+
+                Text {
+                    text: root.app-name;
+                    font-size: 18px;
+                    font-weight: 600;
+                    horizontal-alignment: center;
+                }
+
+                Text {
+                    text: "Version " + root.app-version;
+                    horizontal-alignment: center;
+                }
+
+                AboutSlint {
+                    preferred-width: 256px;
+                    preferred-height: 72px;
+                }
+
+                Button {
+                    text: "OK";
+                    clicked => {
+                        popup.close();
+                    }
+                }
+            }
+        }
+    }
+
+    public function show() {
+        popup.show();
+    }
+}

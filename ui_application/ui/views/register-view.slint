@@ -8,28 +8,45 @@ export component RegisterView {
     callback register-user(string);
 
     VerticalBox {
+        width: 100%;
+        height: 100%;
         padding: 24px;
         spacing: 16px;
+        alignment: center;
 
-        Text {
-            text: root.greeting;
-            font-size: 24px;
-            horizontal-alignment: center;
-        }
+        VerticalBox {
+            spacing: 16px;
+            horizontal-stretch: 1;
+            max-width: 480px;
+            alignment: center;
 
-        LineEdit {
-            placeholder-text: "Display name";
-            text <=> root.greeting;
-        }
+            Text {
+                text: root.greeting;
+                font-size: 24px;
+                horizontal-alignment: center;
+                wrap: word-wrap;
+            }
 
-        Button {
-            text: "Register User";
-            clicked => {
-                root.register-user(root.greeting);
+            LineEdit {
+                placeholder-text: "Display name";
+                text <=> root.greeting;
+            }
+
+            Button {
+                text: "Register User";
+                clicked => {
+                    root.register-user(root.greeting);
+                }
             }
         }
 
+        Rectangle {
+            vertical-stretch: 1;
+            min-height: 8px;
+        }
+
         StatusBadge {
+            horizontal-stretch: 1;
             message: root.status-message;
         }
     }

@@ -16,4 +16,12 @@ pub enum DomainError {
     /// Input validation failed.
     #[error("validation failed: {0}")]
     ValidationFailed(String),
+
+    /// Failed to load application settings.
+    #[error("settings load failed: {0}")]
+    SettingsLoadFailed(String),
+
+    /// Failed to save application settings.
+    #[error("settings save failed: {0}")]
+    SettingsSaveFailed(String),
 }

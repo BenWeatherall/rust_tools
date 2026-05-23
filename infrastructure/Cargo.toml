@@ -10,3 +10,6 @@ workspace = true
 
 [dependencies]
 core_domain = { path = "../core_domain" }
+dirs.workspace = true
+serde.workspace = true
+serde_json.workspace = true
